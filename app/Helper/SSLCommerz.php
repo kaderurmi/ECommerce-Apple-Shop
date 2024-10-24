@@ -49,11 +49,11 @@ class SSLCommerz
           ]);
 
     //     //  ----------------------
-         return $response->json('desc');
-      }
-      catch (Exception $e){
-          return $ssl;
-      }
+        return $response->json('desc');
+     }
+     catch (Exception $e){
+         return $ssl;
+     }
 //     return $response->json('desc') ?? ['error' => 'No description found in response'];
 // } catch (Exception $e) {
 //     // Return an array in case of an error
@@ -61,11 +61,11 @@ class SSLCommerz
 // }
     //-------------------------------
      // Return the response as an array
-    // return ['status' => 'success', 'data' => $response->json('desc')];
-    // } catch (Exception $e) {
-    //     // Return a properly formatted array in case of an error
-    //     return ['status' => 'error', 'message' => $e->getMessage()];
-    // }
+    //  return ['status' => 'success', 'data' => $response->json('desc')];
+    //  } catch (Exception $e) {
+    //      // Return a properly formatted array in case of an error
+    //      return ['status' => 'error', 'message' => $e->getMessage()];
+    //  }
 
     }
 
