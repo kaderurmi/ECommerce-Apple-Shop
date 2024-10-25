@@ -67,7 +67,7 @@ class InvoiceController extends Controller
 
            DB::commit();
 
-           return ResponseHelper::Out('success',array(['paymentMethod'=>$paymentMethod,'payable'=>$payable,'vat'=>$vat,'total'=>$total]),200);
+          return ResponseHelper::Out('success',array(['paymentMethod'=>$paymentMethod,'payable'=>$payable,'vat'=>$vat,'total'=>$total]),200);
 
         }
         catch (Exception $e) {

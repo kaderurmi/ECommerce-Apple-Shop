@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Http;
 class SSLCommerz
 {
 
-   static function  InitiatePayment($Profile,$payable,$tran_id,$user_email): array
+   static function  InitiatePayment($Profile,$payable,$tran_id,$user_email)
    {
       try{
           $ssl= SslcommerzAccount::first();
-          $response = Http::asForm()->post($ssl->init_url,[
+          $response = Http::withOptions(['verify' => false])->asForm()->post($ssl->init_url,[
+          //$response = Http::asForm()->post($ssl->init_url,[ // this change to above line to off ssl verify
               "store_id"=>$ssl->store_id,
               "store_passwd"=>$ssl->store_passwd,
               "total_amount"=>$payable,
@@ -48,28 +49,18 @@ class SSLCommerz
               "product_amount"=>$payable,
           ]);
 
-    //     //  ----------------------
-        return $response->json('desc');
+          return $response->json('desc');
      }
      catch (Exception $e){
          return $ssl;
      }
-//     return $response->json('desc') ?? ['error' => 'No description found in response'];
-// } catch (Exception $e) {
-//     // Return an array in case of an error
-//     return ['error' => $e->getMessage()];
-// }
-    //-------------------------------
-     // Return the response as an array
-    //  return ['status' => 'success', 'data' => $response->json('desc')];
-    //  } catch (Exception $e) {
-    //      // Return a properly formatted array in case of an error
-    //      return ['status' => 'error', 'message' => $e->getMessage()];
-    //  }
 
     }
 
-
+// to deifine this problem we need to install "composer require guzzlehttp/guzzle"
+//curl.cainfo = "C:/xampp/php/extras/ssl/cacert.pem"
+//openssl.cafile = "C:/xampp/php/extras/ssl/cacert.pem"
+// added above line in php.ini file
 
 
     static function InitiateSuccess($tran_id):int{
